@@ -1,0 +1,42 @@
+KlipSnip - Pending use of sound or image
+
+I. Purpose
+To give people who create, use, and edit video footage a way to track their individual "shots", as well as a way to help keep "shots" organized.
+
+II. User Experience
+1. User will open the mobile application while shooting footage. Through the app, they will give the "shot" a name, and also attach comments if necessary. Once ready to shoot, the user will press the generate button. A uniquely identifiable pattern will appear, and the user will place the image in front of the camera. Comments can also be added post-shooting.
+
+2. User uses internet connected computer and uploads their footage to the device. They will then open the KlipSnip application, and load their footage into the platform.
+
+3. User will see that their footage become snipped, renamed, and comments attached.
+
+III. Inner workings
+1. The application only tracks a few data points and correlates them:
+	- Name of "shot"
+	- Comments on "shot"
+	- Unique string to associate to code
+
+2. The data from the mobile application is then sent to a server somewhere to just be persisted.
+
+3. Once the footage has been loaded into the application, the application will pull down the data from the remote server, parse through the footage identifying where the patterns are found, snip accordingly, and add comments and names to new files.
+
+IV. Parts
+Mobile Client
+- Will be built out for iOS
+- Data types:
+	- String for name and comments
+	- int? long? for pattern
+- Tech: xcode and swift
+
+Remote Server
+- Initial use will be strictly for database purposes
+- Must interact with both mobile client and PC client
+- Will hold individuals account info
+- Tech: OS, server software, database 
+	- Tempted to use Amazon EC2
+
+PC Client
+- Purpose is for image/sound processing, and identifying the signals in footage
+- Once signals are identified, footage is snipped
+- Client will pull down data and correlate signals with data previously uploaded to server
+- Tech: C++? Java? OpenCV most likely for footage, TBD for sounds
